@@ -7,6 +7,13 @@ describe('coinCounter', () => {
     const change = coinCounter(4.99);
     expect(change).toEqual(4.99);
   });
+
+  // make sure we're handling integers
+  test('should return input as a floating point int', () => {
+    const change = coinCounter("4.99");
+    expect (change).toEqual(4.99);
+  });
 });
 
+  
 

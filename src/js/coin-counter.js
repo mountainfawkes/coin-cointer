@@ -44,5 +44,5 @@
 // write a function that returns the input number
 
 export default function coinCounter(input) {
-  return input;
+  return (input);
 }
