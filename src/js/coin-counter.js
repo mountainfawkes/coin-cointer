@@ -1,5 +1,6 @@
 export default function coinCounter(input, quarters, dimes, nickels, pennies) {
   let val = input * 100;
+  
   if (isNaN(val)) {
     return;
   }
@@ -11,14 +12,11 @@ export default function coinCounter(input, quarters, dimes, nickels, pennies) {
     val = quarRemainder;                            // val = 24;
     return coinCounter(val, quarters);
   } else if (val > 10) {
-    let quarters = quarters;
     const dimesRemainder = val % 10;    // 24 % 10 = 4 etc etc etc
     const dimes = (val - dimesRemainder) / 10;
     val = dimesRemainder;
     return coinCounter(val, quarters, dimes);
   } else if (val > 5) {
-    let quarters = quarters;
-    let dimes = dimes;
     const nickelRemainder = val % 5;
     const nickels = (val - nickelRemainder) / 5;
     const pennies = nickelRemainder * 100;
