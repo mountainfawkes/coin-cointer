@@ -11,13 +11,8 @@
 // termination case
 // recursion
 
-// input string => int. 
-
-// final output (string with all the change values?)
-
 // function countCoins(dollar amount) {
 // make sure we're handling integers
-// find the difference between the amount of money and cost
 // termination case
 // break case
 // write a recursive modulo method with conditions
@@ -48,6 +43,6 @@
 
 // write a function that returns the input number
 
-export default function coinCounter() {
-  return "wrong number";
+export default function coinCounter(input) {
+  return input;
 }
