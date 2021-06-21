@@ -12,9 +12,9 @@
 // recursion
 
 // function countCoins(dollar amount) {
-// make sure we're handling integers
+// make sure we're handling integers /
 // termination case
-// break case
+// base case
 // write a recursive modulo method with conditions
 // conditional for quarters
 // use a modulo to find the remainder
@@ -43,6 +43,27 @@
 
 // write a function that returns the input number
 
-export default function coinCounter(input) {
-  return parseFloat(input);
+export default function coinCounter(input, unit) {
+  if (isNaN(input)) {
+    return;
+  }
+  if ((input % unit) === 0 || (input % unit) === undefined)
+  {
+    return parseFloat(input);
+  } else {
+    return coinCounter(input % unit);
+  }
 }
+
+coinCounter(0);
+
+// const incrementCounter = (counter) => {
+//   if (counter >= 3) {
+//     return counter;
+//   } else {
+//     console.log(counter);
+//     return incrementCounter(counter + 1);
+//   }
+// }
+
+// incrementCounter(0);
