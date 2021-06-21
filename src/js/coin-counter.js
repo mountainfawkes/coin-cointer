@@ -1,69 +1,48 @@
-// Coin Counter
-// Create a coin counter application that takes X amount of money (such as $4.99) and determines the exact amount of change needed in quarters, dimes, nickels and pennies. Do not worry about adding a user interface to the application. Instead, focus on writing good tests and functional code.
-
-// Part 1
-// Create a coin counter function that uses recursion to solve the problem.
-
-// Part 2
-// Create a coin counter function that uses a closure that can be used with functions for each type of change (quarters, nickels, dimes and pennies). You can use recursion if you like.
-
-// base case
-// termination case
-// recursion
-
-// function countCoins(dollar amount) {
-// make sure we're handling integers /
-// termination case
-// base case
-// write a recursive modulo method with conditions
-// conditional for quarters
-// use a modulo to find the remainder
-// subtract the reminder from the total amount
-// divide the difference by 25 and add the result to an output string
-// conditional for dimes
-// repeat quarter steps for dimes
-// conditional for nickels
-// repeat quarter steps for nickels
-// conditional for pennies
-// repeat quarter steps for pennies
-// }
-
-// 4.99
-// break case is when our input % = 0
-// 4.99 % .25 = .24 (19 quarters)
-// .24 % .10 = .04 (2 dimes)
-// .04 % .05 = .04 (0 nickels)
-// .04 % .01 = 0 (4 pennies)
-
-
-// counter array = [0, 0, 0, 0] -- the number of quarters, dimes, nickels, etc.
-// each time we run our function, we place this array into a new variable that contains the number of each element
-
-// quarterArray = 
-
-// write a function that returns the input number
-
-export default function coinCounter(input, unit) {
-  if (isNaN(input)) {
+export default function coinCounter(input, quarters, dimes, nickels, pennies) {
+  let val = input * 100;
+  if (isNaN(val)) {
     return;
   }
-  if ((input % unit) === 0 || (input % unit) === undefined)
-  {
-    return parseFloat(input);
-  } else {
-    return coinCounter(input % unit);
+  if (val === 0) {
+    console.log(`Your change is: ${quarters} quarters, ${dimes} dimes, ${nickels} nickels, and ${pennies} pennies.`);
+  } else if (val > 25) {
+    const quarRemainder = val % 25;                 // 499 % 25 = 24;
+    const quarters = (val - quarRemainder) / 25;    // 475 / 25 = 19;
+    val = quarRemainder;                            // val = 24;
+    return coinCounter(val, quarters);
+  } else if (val > 10) {
+    let quarters = quarters;
+    const dimesRemainder = val % 10;    // 24 % 10 = 4 etc etc etc
+    const dimes = (val - dimesRemainder) / 10;
+    val = dimesRemainder;
+    return coinCounter(val, quarters, dimes);
+  } else if (val > 5) {
+    let quarters = quarters;
+    let dimes = dimes;
+    const nickelRemainder = val % 5;
+    const nickels = (val - nickelRemainder) / 5;
+    const pennies = nickelRemainder * 100;
+    return coinCounter(val, quarters, dimes, nickels, pennies);
   }
 }
 
-coinCounter(0);
+coinCounter(4.99);
+console.log(coinCounter(4.99));
 
-// const incrementCounter = (counter) => {
-//   if (counter >= 3) {
-//     return counter;
-//   } else {
-//     console.log(counter);
-//     return incrementCounter(counter + 1);
-//   }
-// }
+// to run a js file in node, `node coin-counter.js`
 
-// incrementCounter(0);
+// [0.25, 0.10, 0.05, 0.01]
+// we could turn it into a conversion array, add a counter, and increment by 1 for each recursion, setting the conversion index equal to the counter
+
+
+
+// const quarters = 0.25
+// etc..
+// const value = whatever the money inputted is..
+// quarterRemainder = val % .25
+// dimeRemainder = quarterRemainder % .10
+// nickelRemainer = DimeRemainder % .05
+// PennyRemainder = NickelRemainder % 0.01
+// etc. 
+// remainder amount. 
+// go to next function .
